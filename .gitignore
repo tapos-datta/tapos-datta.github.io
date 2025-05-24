@@ -1,0 +1,14 @@
+# macOS system files
+.DS_Store
+
+# Thumbnails
+Thumbs.db
+
+# IDE/editor settings (optional)
+.vscode/
+.idea/
+
+# Optional backup files
+*.log
+*.tmp
+*.bak
