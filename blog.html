@@ -3,152 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Latest blog posts about computer vision, machine learning, and mobile development by Tapos Datta">
     <title>Blog | Tapos Datta</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/blog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calibre:wght@400;500;600;700&family=SF+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="loader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <object data="assets/icons/logo.svg" type="image/svg+xml" class="logo-svg" aria-label="Logo">
-                </object>
-            </div>
-        </div>
-    </div>
+    <!-- Loader and Social Sidebar -->
+    <div id="loader-container"></div>
+    <div id="social-sidebar-container"></div>
 
-    <!-- Social Links Sidebar -->
-    <div class="social-sidebar-right">
-        <div class="social-links-vertical">
-            <a href="https://github.com/tapos-datta" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/tapos-datta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://medium.com/@tapos-datta" target="_blank" rel="noopener noreferrer" aria-label="Medium">
-                <i class="fab fa-medium"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=kkHIB-IAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
-                <i class="fas fa-graduation-cap"></i>
-            </a>
-            <div class="social-line"></div>
-        </div>
-    </div>
-
-    <header>
-        <nav>
-            <div class="nav-content">
-                <div class="logo">
-                    <a href="index.html">
-                        <object data="assets/icons/logo.svg" type="image/svg+xml" class="logo-svg" aria-label="Logo">
-                        </object>
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <ol>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#experience">Experience</a></li>
-                        <li><a href="index.html#projects">Projects</a></li>
-                        <li><a href="index.html#publications">Publications</a></li>
-                        <li><a href="blog.html" class="active">Blog</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ol>
-                    <div class="nav-links-right">
-                        <div class="resume-button">
-                            <a href="assets/documents/Tapos_Datta.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-                        </div>
-                    </div>
-                </div>
-                <button class="mobile-menu-btn" aria-label="Menu">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <nav>
-            <ol>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#publications">Publications</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ol>
-            <div class="mobile-resume">
-                <a href="assets/documents/Tapos_Datta.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-            </div>
-            <div class="mobile-social-links">
-                <a href="https://github.com/tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://medium.com/@tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-medium"></i>
-                </a>
-            </div>
-        </nav>
-    </div>
+    <!-- Header -->
+    <div id="header-container"></div>
 
     <main>
-        <section id="blog-content" class="section">
+        <section class="blog-section">
             <div class="container">
-                <div class="blog-header">
-                    <h1 class="section-title">Latest Blog Posts</h1>
-                </div>
+                <h1 class="section-title">Latest Blog Posts</h1>
+                <div class="blog-grid"></div>
+                <button class="load-more-button">Load More Articles</button>
+            </div>
+        </section>
 
-                <!-- Blog Grid -->
-                <div class="blog-grid">
-                    <!-- Blog cards will be dynamically loaded here -->
-                </div>
-
-                <!-- Load More Button -->
-                <div class="load-more-container">
-                    <button class="load-more-button">
-                        Load More Articles <i class="fas fa-arrow-down"></i>
-                    </button>
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to my newsletter for the latest articles and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://medium.com/@tapos-datta" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-medium"></i>
-                </a>
-                <a href="https://scholar.google.com/citations?user=kkHIB-IAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-graduation-cap"></i>
-                </a>
-            </div>
-            <div class="copyright">
-                <p>Designed & Built by Tapos Datta</p>
-                <p>© 2025 Tapos Datta. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
 
+    <script src="js/components.js"></script>
     <script src="js/script.js"></script>
     <script src="js/blog.js"></script>
 </body>

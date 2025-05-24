@@ -287,4 +287,82 @@ if (newsletterForm) {
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     fetchMediumArticles();
+});
+
+// Function to initialize the blog grid
+function initializeBlogGrid() {
+    const blogGrid = document.querySelector('.blog-grid');
+    if (!blogGrid) return;
+
+    // Example blog posts data
+    const blogPosts = [
+        {
+            title: "Optimizing ML Models for Mobile Deployment",
+            excerpt: "A deep dive into techniques for reducing model size while maintaining accuracy in mobile applications.",
+            date: "March 15, 2024",
+            readTime: "8 min read",
+            link: "https://medium.com/@tapos-datta/optimizing-ml-models-for-mobile-deployment"
+        },
+        {
+            title: "Real-Time Video Processing with OpenGL ES",
+            excerpt: "Exploring efficient video processing techniques using OpenGL ES for mobile applications.",
+            date: "February 28, 2024",
+            readTime: "10 min read",
+            link: "https://medium.com/@tapos-datta/real-time-video-processing-with-opengl-es"
+        },
+        {
+            title: "Building Efficient Computer Vision Apps",
+            excerpt: "Best practices for implementing computer vision features in mobile applications.",
+            date: "February 10, 2024",
+            readTime: "12 min read",
+            link: "https://medium.com/@tapos-datta/building-efficient-computer-vision-apps"
+        }
+    ];
+
+    // Create blog cards
+    blogPosts.forEach(post => {
+        const card = createBlogCard(post);
+        blogGrid.appendChild(card);
+    });
+
+    // Initialize load more button
+    const loadMoreButton = document.querySelector('.load-more-button');
+    if (loadMoreButton) {
+        loadMoreButton.addEventListener('click', () => {
+            // Add more blog posts or show a message
+            loadMoreButton.textContent = 'More articles coming soon!';
+            loadMoreButton.disabled = true;
+        });
+    }
+}
+
+// Function to create a blog card
+function createBlogCard(post) {
+    const card = document.createElement('article');
+    card.className = 'blog-card';
+    
+    card.innerHTML = `
+        <div class="blog-card-content">
+            <div class="blog-card-header">
+                <h3>${post.title}</h3>
+                <div class="blog-card-meta">
+                    <span class="blog-date">${post.date}</span>
+                    <span class="blog-read-time">${post.readTime}</span>
+                </div>
+            </div>
+            <p class="blog-excerpt">${post.excerpt}</p>
+            <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="blog-link">
+                Read More <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Initialize blog grid when the component is loaded
+document.addEventListener('componentLoaded', (event) => {
+    if (event.detail.componentName === 'blog') {
+        initializeBlogGrid();
+    }
 }); 

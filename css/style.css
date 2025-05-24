@@ -28,6 +28,9 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     font-size: 16px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
 /* Loader */
@@ -157,17 +160,24 @@ body {
 header {
     position: fixed;
     top: 0;
+    left: 0; /* Ensure it starts from the left edge */
+    right: 0; /* Ensure it extends to the right edge */
     width: 100%;
     z-index: 100;
     background-color: rgba(10, 25, 47, 0.85);
     backdrop-filter: blur(10px);
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 nav {
-    padding: 0 30px;
+    padding: 0 50px; /* Match container padding */
     height: 100px;
     display: flex;
     align-items: center;
+    margin: 0;
+    border: none;
 }
 
 .nav-content {
@@ -251,27 +261,33 @@ nav {
 
 /* Sections */
 .section {
-    padding: 80px 0;  /* Adjusted from 60px */
-    min-height: 100vh; /* Restored to 100vh for consistent section heights */
+    padding: 100px 0;
+    background-color: var(--navy);
+    min-height: 100vh;
     display: flex;
-    align-items: center; /* Restored to center for better vertical alignment */
+    align-items: center;
+    margin: 0; /* Ensure no margin between sections */
+    border: none; /* Ensure no borders */
 }
 
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 100px 0 50px;
+    padding: 0 50px; /* Adjusted padding to be consistent */
+    background-color: transparent;
     position: relative;
     z-index: 1;
 }
 
 /* Hero Section */
 #hero {
-    padding-top: 120px; /* Adjusted from 150px */
+    padding-top: 120px;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    margin: 0;
+    border: none;
 }
 
 .subtitle {
@@ -897,7 +913,7 @@ footer {
 /* Update responsive adjustments */
 @media (max-width: 1080px) {
     nav {
-        padding: 0 25px;
+        padding: 0 40px;
     }
     
     .logo {
@@ -914,13 +930,13 @@ footer {
     }
     
     .container {
-        padding: 0 80px 0 40px;
+        padding: 0 40px;
     }
 }
 
 @media (max-width: 768px) {
     nav {
-        padding: 0 20px;
+        padding: 0 25px;
     }
 
     .logo {
@@ -1282,8 +1298,21 @@ footer {
     right: 40px;
     bottom: 0;
     width: 40px;
-    z-index: 10;
+    z-index: 1000;
     color: var(--lightest-slate);
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#social-sidebar-container {
+    position: fixed;
+    right: 40px;
+    bottom: 0;
+    width: 40px;
+    z-index: 999;
+    pointer-events: none;
 }
 
 .social-links-vertical {
@@ -1292,6 +1321,9 @@ footer {
     align-items: center;
     position: relative;
     padding-bottom: 20px;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .social-links-vertical a {
@@ -1299,6 +1331,11 @@ footer {
     font-size: 1.2rem;
     padding: 10px;
     transition: all 0.3s ease;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    margin: 2px 0;
 }
 
 .social-links-vertical a:hover {
@@ -1309,8 +1346,10 @@ footer {
 .social-line {
     width: 1px;
     height: 90px;
-    background-color: var(--lightest-slate);
+    background-color: var(--green);
     margin-top: 20px;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Mobile Menu Button */
@@ -1452,6 +1491,11 @@ footer {
 
     .mobile-menu-btn.active .hamburger span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .social-sidebar-right,
+    #social-sidebar-container {
+        display: none;
     }
 }
 
@@ -2272,4 +2316,106 @@ footer {
 
 .cta-button span {
     font-size: 1rem;
+}
+
+/* Basic styles to make components visible */
+body {
+    font-family: 'Calibre', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px; /* Adjusted padding to be consistent */
+}
+
+.section {
+    padding: 100px 0;
+    background-color: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0; /* Ensure no margin between sections */
+    border: none; /* Ensure no borders */
+}
+
+/* Make sure components are visible */
+#header-container,
+#hero-container,
+#about-container,
+#technologies-container,
+#experience-container,
+#education-container,
+#projects-container,
+#publications-container,
+#contact-container,
+#footer-container {
+    display: block;
+    min-height: 50px;
+    background-color: transparent;
+}
+
+/* Add some basic styling to make content readable */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 20px 0;
+}
+
+p {
+    margin: 0 0 15px 0;
+}
+
+/* Ensure main element has no gaps */
+main {
+    margin: 0;
+    padding: 0;
+    background-color: var(--navy);
+}
+
+/* Update hero section specific styles */
+#hero {
+    padding-top: 120px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border: none;
+}
+
+/* Update header styles to ensure no gaps */
+header {
+    position: fixed;
+    top: 0;
+    left: 0; /* Ensure it starts from the left edge */
+    right: 0; /* Ensure it extends to the right edge */
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(10px);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Update nav styles */
+nav {
+    padding: 0 50px; /* Match container padding */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    border: none;
+}
+
+/* Update responsive nav padding */
+@media (max-width: 1080px) {
+    nav {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0 25px;
+    }
 } 
