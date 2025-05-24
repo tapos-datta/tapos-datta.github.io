@@ -517,11 +517,311 @@ nav {
 }
 
 /* Contact Section */
-.contact-text {
+/* .contact-text {
     max-width: 600px;
     margin: 0 auto 50px;
     text-align: center;
     font-size: 1.2rem;
+} */
+
+/* Add new modern contact section styles */
+.contact-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.contact-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-card {
+    background-color: var(--light-navy);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-header {
+    margin-bottom: 1.5rem;
+}
+
+.contact-header h3 {
+    color: var(--lightest-slate);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+}
+
+.contact-intro {
+    color: var(--light-slate);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(100, 255, 218, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateX(5px);
+}
+
+.contact-item i {
+    color: var(--green);
+    font-size: 1.2rem;
+}
+
+.contact-item-content {
+    flex: 1;
+}
+
+.contact-item-content a {
+    color: var(--lightest-slate);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-item-content a:hover {
+    color: var(--green);
+}
+
+.social-card {
+    background-color: var(--light-navy);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+    background-color: rgba(100, 255, 218, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.social-item:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-5px);
+}
+
+.social-item i {
+    color: var(--green);
+    font-size: 1.5rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-item span {
+    color: var(--lightest-slate);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.social-handle {
+    color: var(--slate);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.cta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cta-card {
+    background-color: var(--light-navy);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-card:hover {
+    transform: translateY(-5px);
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cta-button.primary {
+    background-color: var(--green);
+    color: var(--navy);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -10px rgba(100, 255, 218, 0.3);
+}
+
+.cta-button.secondary {
+    border: 1px solid var(--green);
+    color: var(--green);
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-3px);
+}
+
+.quick-links-card {
+    background-color: var(--light-navy);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.quick-links-card:hover {
+    transform: translateY(-5px);
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.quick-link-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+    background-color: rgba(100, 255, 218, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.quick-link-item:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-5px);
+}
+
+.quick-link-item i {
+    color: var(--green);
+    font-size: 1.2rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-link-item span {
+    color: var(--lightest-slate);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .social-grid,
+    .quick-links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-card,
+    .social-card,
+    .cta-card,
+    .quick-links-card {
+        padding: 1.5rem;
+    }
+    
+    .contact-intro {
+        font-size: 0.95rem;
+    }
+    
+    .contact-item-content a {
+        font-size: 0.95rem;
+    }
+    
+    .cta-button {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .social-grid,
+    .quick-links-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Footer */
@@ -1804,4 +2104,115 @@ footer {
         font-size: 1.4rem;
         margin-bottom: 2rem;
     }
+}
+
+/* Contact Card Headers */
+.contact-card-header,
+.social-card-header,
+.cta-card-header,
+.quick-links-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-card-header i,
+.social-card-header i,
+.cta-card-header i,
+.quick-links-header i {
+    color: var(--green);
+    font-size: 1.2rem;
+}
+
+.contact-card-header h3,
+.social-card-header h3,
+.cta-card-header h3,
+.quick-links-header h3 {
+    color: var(--lightest-slate);
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: var(--font-mono);
+}
+
+/* Contact Details */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.contact-label {
+    display: block;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Social Items */
+.social-handle {
+    color: var(--slate);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+}
+
+/* Contact CTA Section */
+.contact-cta-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-availability-status {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--lightest-navy);
+}
+
+.contact-status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--slate);
+}
+
+.contact-status-indicator.available {
+    background-color: var(--green);
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
+}
+
+.contact-availability-status span {
+    color: var(--light-slate);
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+}
+
+/* CTA Button Content */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.cta-button i {
+    font-size: 1.1rem;
+}
+
+.cta-button span {
+    font-size: 1rem;
 } 
