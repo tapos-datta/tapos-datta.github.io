@@ -161,7 +161,7 @@
 }
 
 /* Placeholder Image Styles */
-.blog-card-image img[src*="placeholder_blog.webp"] {
+.blog-card-image img[src*="assets/images/placeholder_blog.webp"] {
     object-fit: contain;
     padding: 2rem;
     background: linear-gradient(45deg, 

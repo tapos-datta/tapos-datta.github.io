@@ -77,7 +77,7 @@ function getArticleImage(article) {
     }
     
     // Final fallback to placeholder image
-    return 'images/placeholder_blog.webp';
+    return 'assets/images/placeholder_blog.webp';
 }
 
 // Create Blog Card HTML
@@ -96,7 +96,7 @@ function createBlogCard(article) {
                     <img src="${articleImage}" 
                          alt="${article.title}" 
                          loading="lazy" 
-                         onerror="this.onerror=null; this.src='images/placeholder_blog.webp'">
+                         onerror="this.onerror=null; this.src='assets/images/placeholder_blog.webp'">
                 </div>
                 <div class="blog-card-text">
                     <div class="blog-meta">
@@ -157,7 +157,7 @@ function handleImageLoading() {
                 };
                 tempImage.onerror = () => {
                     // Use local placeholder image
-                    img.src = 'images/placeholder_blog.webp';
+                    img.src = 'assets/images/placeholder_blog.webp';
                     img.classList.add('loaded');
                 };
                 
