@@ -10,6 +10,7 @@ export class Navigation {
         this.lastScrollY = window.scrollY;
         this.isMenuOpen = false;
         this.currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        this.isTransitioning = false;
 
         this.init();
     }
@@ -22,10 +23,14 @@ export class Navigation {
         this.initLogoLink();
         this.initSectionLinks();
 
+        // Add transition class to body
+        document.body.classList.add('page-transition-ready');
+
         // Handle initial navigation if coming from blog.html
         if (document.referrer.includes('blog.html')) {
             const hash = window.location.hash;
             if (hash) {
+                // Add a small delay to ensure the page is fully loaded
                 setTimeout(() => {
                     const targetSection = document.querySelector(hash);
                     if (targetSection) {
@@ -43,9 +48,60 @@ export class Navigation {
         }
     }
 
+    async navigateToSection(targetSection, smooth = true) {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
+        // Add transition class
+        document.body.classList.add('page-transitioning');
+
+        // If we're on blog.html, navigate to index.html first
+        if (this.currentPage === 'blog.html') {
+            // Use replaceState to prevent adding to browser history
+            history.replaceState(null, '', 'index.html');
+            
+            // Wait for the transition
+            await new Promise(resolve => setTimeout(resolve, 300));
+            
+            // Navigate to index.html
+            window.location.href = 'index.html';
+            return;
+        }
+
+        // If we're navigating to blog
+        if (targetSection === 'blog') {
+            // Add transition class
+            document.body.classList.add('page-transitioning');
+            
+            // Wait for the transition
+            await new Promise(resolve => setTimeout(resolve, 300));
+            
+            // Navigate to blog
+            window.location.href = 'blog.html';
+            return;
+        }
+
+        // For other sections, scroll smoothly
+        if (smooth) {
+            const headerHeight = this.header.offsetHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Remove transition class after animation
+        setTimeout(() => {
+            document.body.classList.remove('page-transitioning');
+            this.isTransitioning = false;
+        }, 300);
+    }
+
     initSectionLinks() {
         this.sectionLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+            link.addEventListener('click', async (e) => {
                 e.preventDefault();
                 const href = link.getAttribute('href');
                 const [page, hash] = href.split('#');
@@ -58,22 +114,14 @@ export class Navigation {
 
                 // If we're on blog.html, handle navigation differently
                 if (currentPage === 'blog.html') {
-                    e.preventDefault();
-                    // Use replaceState to prevent adding to browser history
-                    history.replaceState(null, '', 'index.html');
-                    window.location.href = 'index.html';
-                    // After navigation, scroll to the section
-                    setTimeout(() => {
-                        const targetSection = document.querySelector(`#${hash}`);
-                        if (targetSection) {
-                            const headerHeight = this.header.offsetHeight;
-                            const targetPosition = targetSection.offsetTop - headerHeight;
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }, 100);
+                    // Add transition class
+                    document.body.classList.add('page-transitioning');
+                    
+                    // Wait for the transition
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    
+                    // Navigate to index.html with the hash
+                    window.location.href = `index.html${hash ? `#${hash}` : ''}`;
                     return;
                 }
 
@@ -160,7 +208,8 @@ export class Navigation {
 
     initNavLinks() {
         this.navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
                 const href = link.getAttribute('href');
                 
                 // Close mobile menu if open
@@ -168,43 +217,17 @@ export class Navigation {
                     this.closeMobileMenu();
                 }
 
-                // Handle blog page navigation
+                // Handle blog navigation
                 if (href === 'blog.html') {
+                    await this.navigateToSection('blog');
                     return;
                 }
 
                 // Handle section navigation
                 if (href.startsWith('#')) {
-                    e.preventDefault();
                     const targetSection = document.querySelector(href);
                     if (targetSection) {
-                        // If we're on blog.html, navigate to index.html first
-                        if (this.currentPage === 'blog.html') {
-                            e.preventDefault();
-                            // Use replaceState to prevent adding to browser history
-                            history.replaceState(null, '', 'index.html');
-                            window.location.href = 'index.html';
-                            // After navigation, scroll to the section
-                            setTimeout(() => {
-                                const headerHeight = this.header.offsetHeight;
-                                const targetPosition = targetSection.offsetTop - headerHeight;
-                                window.scrollTo({
-                                    top: targetPosition,
-                                    behavior: 'smooth'
-                                });
-                            }, 100);
-                            return;
-                        }
-
-                        // Remove hash from URL
-                        history.pushState("", document.title, window.location.pathname);
-                        
-                        const headerHeight = this.header.offsetHeight;
-                        const targetPosition = targetSection.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        await this.navigateToSection(targetSection);
                     }
                 }
             });

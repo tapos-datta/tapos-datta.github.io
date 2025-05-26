@@ -7,12 +7,16 @@ export class Blog {
         this.loadMoreBtn = document.getElementById('loadMoreBtn');
         this.errorMessage = document.getElementById('errorMessage');
         this.isLoading = false;
+        this.initialLoad = true;
     }
 
     async init() {
         try {
-            // Show loading state
-            this.showLoadingState();
+            if (this.initialLoad) {
+                // Show loading state only on initial load
+                this.showLoadingState();
+                this.initialLoad = false;
+            }
             
             // Fetch initial posts
             const posts = await blogService.fetchPosts();
@@ -21,11 +25,17 @@ export class Blog {
             this.blogGrid.innerHTML = '';
             
             if (posts && posts.length > 0) {
+                // Create a document fragment for better performance
+                const fragment = document.createDocumentFragment();
+                
                 // Render posts
                 posts.forEach(post => {
                     const card = blogService.createBlogCard(post);
-                    this.blogGrid.appendChild(card);
+                    fragment.appendChild(card);
                 });
+
+                // Append all cards at once
+                this.blogGrid.appendChild(fragment);
 
                 // Show/hide load more button
                 this.loadMoreBtn.style.display = blogService.hasMorePosts() ? 'block' : 'none';
@@ -42,26 +52,16 @@ export class Blog {
     }
 
     showLoadingState() {
-        this.blogGrid.innerHTML = `
-            <div class="blog-card">
-                <div class="blog-card-content">
-                    <div class="blog-card-image">
-                        <img src="assets/images/placeholder_blog.webp" alt="Loading..." loading="lazy">
-                    </div>
-                    <div class="blog-card-text">
-                        <div class="blog-meta">
-                            <span class="blog-date">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                <span class="date">Loading...</span>
-                            </span>
-                            <span class="blog-category">Loading...</span>
-                        </div>
-                        <h3>Loading blog posts...</h3>
-                        <p class="blog-excerpt">Please wait while we fetch the latest articles.</p>
-                    </div>
-                </div>
+        const loadingCard = document.createElement('div');
+        loadingCard.className = 'blog-card blog-loading';
+        loadingCard.innerHTML = `
+            <div class="blog-card-content">
+                <div class="loading-spinner"></div>
+                <p>Loading posts...</p>
             </div>
         `;
+        this.blogGrid.innerHTML = '';
+        this.blogGrid.appendChild(loadingCard);
     }
 
     showNoPostsMessage() {
@@ -111,6 +111,26 @@ export class Blog {
             this.loadMoreBtn.textContent = 'Load More Posts';
             this.loadMoreBtn.disabled = false;
         }
+    }
+
+    async renderPosts(posts) {
+        // Clear container
+        this.blogGrid.innerHTML = '';
+        
+        // Add blog-container class for animation
+        this.blogGrid.classList.add('blog-container');
+        
+        // Create a document fragment for better performance
+        const fragment = document.createDocumentFragment();
+        
+        // Add each post with animation
+        posts.forEach(post => {
+            const card = blogService.createBlogCard(post);
+            fragment.appendChild(card);
+        });
+        
+        // Add all posts at once
+        this.blogGrid.appendChild(fragment);
     }
 }
 

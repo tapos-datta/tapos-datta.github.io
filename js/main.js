@@ -24,12 +24,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         initNavigation();
         initAnimations();
 
-        // Initialize remaining components
-        setTimeout(() => {
-            initTabs();
-            initContactForm();
-            initBlog();
-        }, 100);
+        // Initialize remaining components immediately
+        initTabs();
+        initContactForm();
+        initBlog();
 
         console.log('Portfolio website initialized');
     } catch (error) {

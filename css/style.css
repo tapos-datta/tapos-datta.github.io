@@ -2418,4 +2418,114 @@ nav {
     nav {
         padding: 0 25px;
     }
+}
+
+/* Page Transitions */
+.page-transition-ready {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.page-transitioning {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Ensure header stays visible during transitions */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Remove transition from header */
+    transition: none;
+}
+
+/* Smooth section transitions */
+section {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Blog section specific transitions */
+.blog-section {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-transitioning .blog-section {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Ensure content doesn't jump during transitions */
+main {
+    min-height: 100vh;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+/* Update page transition to exclude header */
+.page-transitioning > *:not(header) {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Blog Page Animations */
+.blog-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: blogPageEnter 0.6s ease forwards;
+}
+
+@keyframes blogPageEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Blog Card Animations */
+.blog-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: blogCardEnter 0.6s ease forwards;
+}
+
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.2s; }
+.blog-card:nth-child(3) { animation-delay: 0.3s; }
+.blog-card:nth-child(4) { animation-delay: 0.4s; }
+.blog-card:nth-child(5) { animation-delay: 0.5s; }
+.blog-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes blogCardEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Blog Loading State */
+.blog-loading {
+    opacity: 0;
+    animation: blogLoadingEnter 0.4s ease forwards;
+}
+
+@keyframes blogLoadingEnter {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 } 
