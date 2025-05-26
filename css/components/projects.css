@@ -1,0 +1,227 @@
+/* Projects Section Styles */
+#projects {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
+#projects .section-heading {
+    margin-bottom: 30px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    position: relative;
+}
+
+.project-card {
+    background-color: var(--light-navy);
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content h3 {
+    color: var(--lightest-slate);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.project-content p {
+    color: var(--light-slate);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.project-tech-list li {
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-links a {
+    color: var(--lightest-slate);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.project-links a:hover {
+    color: var(--green);
+}
+
+.project-links a.github-link {
+    font-size: 1.1rem;
+}
+
+.project-links a.external-link {
+    font-size: 1rem;
+}
+
+/* Featured Project Styles */
+.featured-project {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.featured-project .project-image {
+    height: 100%;
+    min-height: 300px;
+    border-radius: 4px;
+}
+
+.featured-project .project-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-project .project-content h3 {
+    font-size: 1.5rem;
+}
+
+.featured-project .project-content p {
+    font-size: 1rem;
+}
+
+/* Project Overlay */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 25, 47, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.overlay-content h4 {
+    color: var(--lightest-slate);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.overlay-content p {
+    color: var(--light-slate);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.overlay-content .overlay-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.overlay-content .overlay-links a {
+    color: var(--lightest-slate);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.overlay-content .overlay-links a:hover {
+    color: var(--green);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .featured-project {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-project .project-image {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .featured-project .project-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-image {
+        height: 180px;
+    }
+    
+    .project-content {
+        padding: 20px;
+    }
+    
+    .project-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .featured-project .project-content h3 {
+        font-size: 1.2rem;
+    }
+}

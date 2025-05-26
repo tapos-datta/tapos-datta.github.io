@@ -22,22 +22,35 @@
     <main>
         <section class="blog-section">
             <div class="container">
-                <h1 class="section-title">Latest Blog Posts</h1>
-                <div class="blog-grid"></div>
-                <button class="load-more-button">Load More Articles</button>
-            </div>
-        </section>
-
-        <section class="newsletter-section">
-            <div class="container">
-                <div class="newsletter-content">
-                    <h2>Stay Updated</h2>
-                    <p>Subscribe to my newsletter for the latest articles and insights.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
+                <h2 class="section-heading">Latest Blog Posts</h2>
+                <div class="blog-grid" id="blogGrid">
+                    <!-- Blog posts will be dynamically inserted here -->
+                    <div class="blog-card">
+                        <div class="blog-card-content">
+                            <div class="blog-card-image">
+                                <img src="assets/images/placeholder_blog.webp" alt="Blog post thumbnail" loading="lazy">
+                            </div>
+                            <div class="blog-card-text">
+                                <div class="blog-meta">
+                                    <span class="blog-date">
+                                        <i class="fas fa-calendar"></i>
+                                        <span class="date">Loading...</span>
+                                    </span>
+                                    <span class="blog-category">Loading...</span>
+                                </div>
+                                <h3>Loading...</h3>
+                                <p class="blog-excerpt">Loading blog post content...</p>
+                                <a href="#" class="read-more" target="_blank" rel="noopener noreferrer">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <button class="load-more-button" id="loadMoreBtn" style="display: none;">
+                    Load More Posts
+                </button>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
             </div>
         </section>
     </main>
@@ -45,8 +58,7 @@
     <!-- Footer Component -->
     <div id="footer-container"></div>
 
-    <script src="js/components.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/blog.js"></script>
+    <!-- Development JavaScript -->
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
