@@ -1,12 +1,14 @@
 {
-  "name": "taposdatta.github.io",
+  "name": "tapos-datta.github.io",
   "version": "1.0.0",
   "description": "Personal portfolio website showcasing my skills, projects, and experience.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -16,10 +18,13 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tapos-datta/taposdatta.github.io/issues"
+    "url": "https://github.com/tapos-datta/tapos-datta.github.io/issues"
   },
   "homepage": "https://tapos-datta.github.io/",
   "devDependencies": {
-    "vite": "^4.5.2"
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
   }
 }

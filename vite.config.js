@@ -3,6 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
+  base: '/tapos-datta.github.io/',
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -25,5 +26,17 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis'
+      }
+    }
+  },
+  resolve: {
+    alias: {
+      crypto: 'crypto-js'
+    }
   }
 }); 
