@@ -118,8 +118,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🌐 Live Website: [tapos-datta.github.io](https://tapos-datta.github.io)
 - 💻 GitHub: [@tapos-datta](https://github.com/tapos-datta)
 - 🔗 LinkedIn: [Tapos Datta](https://linkedin.com/in/tapos-datta)
-- 📧 Email: [tapos.datta@gmail.com](mailto:tapos.datta@gmail.com)
+- 📧 Email: [@taposdatta2013](mailto:taposdatta2013@gmail.com)
 
 ---
-
-Made with ❤️ by Tapos Datta | [View Live Site](https://tapos-datta.github.io)
