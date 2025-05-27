@@ -107,22 +107,10 @@ export class BlogService {
 
     async isValidImage(url) {
         try {
-            if (!url || typeof url !== 'string') return false;
-            
-            // Check if URL is valid
-            new URL(url);
-            
-            const response = await fetch(url, { 
-                method: 'HEAD',
-                mode: 'no-cors' // This allows checking cross-origin images
-            });
-            
-            // If we can't check the content type (due to CORS), assume it's valid
-            if (response.type === 'opaque') return true;
-            
+            const response = await fetch(url, { method: 'HEAD' });
             return response.ok && response.headers.get('content-type')?.startsWith('image/');
         } catch (error) {
-            console.error('Error validating image:', url, error);
+            console.error('Error checking image:', error);
             return false;
         }
     }
@@ -245,10 +233,6 @@ export class BlogService {
                 </div>
             </div>
         `;
-
-        // Add animation delay based on index
-        const index = Array.from(card.parentElement?.children || []).indexOf(card);
-        card.style.animationDelay = `${(index + 1) * 0.1}s`;
 
         return card;
     }

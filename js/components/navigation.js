@@ -15,88 +15,39 @@ export class Navigation {
         this.init();
     }
 
-    init() {
-        // Initialize event listeners
-        this.initScrollHandler();
-        this.initMobileMenu();
-        this.initNavLinks();
-        this.initLogoLink();
-        this.initSectionLinks();
-
-        // Add transition class to body
-        document.body.classList.add('page-transition-ready');
-
-        // Handle initial navigation if coming from blog.html
-        if (document.referrer.includes('blog.html')) {
-            const hash = window.location.hash;
-            if (hash) {
-                // Add a small delay to ensure the page is fully loaded
-                setTimeout(() => {
-                    const targetSection = document.querySelector(hash);
-                    if (targetSection) {
-                        const headerHeight = this.header.offsetHeight;
-                        const targetPosition = targetSection.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        // Remove hash from URL after scrolling
-                        history.pushState("", document.title, window.location.pathname);
-                    }
-                }, 100);
-            }
-        }
-    }
-
-    async navigateToSection(targetSection, smooth = true) {
+    async navigateToPage(targetPage, hash = '') {
         if (this.isTransitioning) return;
         this.isTransitioning = true;
 
-        // Add transition class
-        document.body.classList.add('page-transitioning');
+        // Navigate to target page immediately
+        const targetUrl = hash ? `${targetPage}#${hash}` : targetPage;
+        window.location.href = targetUrl;
+    }
+
+    async navigateToSection(targetSection) {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
 
         // If we're on blog.html, navigate to index.html first
         if (this.currentPage === 'blog.html') {
-            // Use replaceState to prevent adding to browser history
-            history.replaceState(null, '', 'index.html');
-            
-            // Wait for the transition
-            await new Promise(resolve => setTimeout(resolve, 300));
-            
-            // Navigate to index.html
-            window.location.href = 'index.html';
+            await this.navigateToPage('index.html', targetSection.id);
             return;
         }
 
-        // If we're navigating to blog
-        if (targetSection === 'blog') {
-            // Add transition class
-            document.body.classList.add('page-transitioning');
-            
-            // Wait for the transition
-            await new Promise(resolve => setTimeout(resolve, 300));
-            
-            // Navigate to blog
-            window.location.href = 'blog.html';
-            return;
-        }
+        // For sections on the same page, scroll smoothly
+        const headerHeight = this.header.offsetHeight;
+        const targetPosition = targetSection.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
 
-        // For other sections, scroll smoothly
-        if (smooth) {
-            const headerHeight = this.header.offsetHeight;
-            const targetPosition = targetSection.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
+        // Update URL without page reload
+        history.pushState(null, '', `#${targetSection.id}`);
 
-        // Remove transition class after animation
-        setTimeout(() => {
-            document.body.classList.remove('page-transitioning');
-            this.isTransitioning = false;
-        }, 300);
+        // Reset transition state
+        this.isTransitioning = false;
     }
 
     initSectionLinks() {
@@ -105,44 +56,24 @@ export class Navigation {
                 e.preventDefault();
                 const href = link.getAttribute('href');
                 const [page, hash] = href.split('#');
-                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
                 // Close mobile menu if open
                 if (this.isMenuOpen) {
                     this.closeMobileMenu();
                 }
 
-                // If we're on blog.html, handle navigation differently
-                if (currentPage === 'blog.html') {
-                    // Add transition class
-                    document.body.classList.add('page-transitioning');
-                    
-                    // Wait for the transition
-                    await new Promise(resolve => setTimeout(resolve, 300));
-                    
-                    // Navigate to index.html with the hash
-                    window.location.href = `index.html${hash ? `#${hash}` : ''}`;
+                // If we're navigating to a different page
+                if (page && page !== this.currentPage) {
+                    await this.navigateToPage(page, hash);
                     return;
                 }
 
-                // If we're on a different page, navigate to index.html first
-                if (page && page !== currentPage) {
-                    window.location.href = href;
-                    return;
-                }
-
-                // Remove hash from URL
-                history.pushState("", document.title, window.location.pathname);
-
-                // Scroll to section
-                const targetSection = document.querySelector(`#${hash}`);
-                if (targetSection) {
-                    const headerHeight = this.header.offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                // If we're navigating to a section
+                if (hash) {
+                    const targetSection = document.querySelector(`#${hash}`);
+                    if (targetSection) {
+                        await this.navigateToSection(targetSection);
+                    }
                 }
             });
         });
@@ -150,37 +81,56 @@ export class Navigation {
 
     initLogoLink() {
         if (this.logoLink) {
-            this.logoLink.addEventListener('click', (e) => {
+            this.logoLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                
                 // Close mobile menu if open
                 if (this.isMenuOpen) {
                     this.closeMobileMenu();
                 }
-                
-                // If we're already on index.html, prevent default and scroll to top
-                if (this.currentPage === 'index.html') {
-                    e.preventDefault();
-                    // Remove any existing hash from URL
-                    history.pushState("", document.title, window.location.pathname);
+
+                // Always navigate to index.html
+                if (this.currentPage !== 'index.html') {
+                    await this.navigateToPage('index.html');
+                } else {
+                    // If already on index.html, scroll to top
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
+                    // Remove hash from URL
+                    history.pushState(null, '', window.location.pathname);
                 }
-                // Otherwise, let the default navigation happen to go to index.html
             });
         }
     }
 
     initScrollHandler() {
-        window.addEventListener('scroll', () => {
-            // Handle header visibility on scroll
-            if (window.scrollY > this.lastScrollY && window.scrollY > 100) {
-                this.header.classList.add('header-hidden');
-            } else {
-                this.header.classList.remove('header-hidden');
-            }
+        let lastScrollY = window.scrollY;
+        let ticking = false;
 
-            this.lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    const scrollDelta = currentScrollY - lastScrollY;
+                    const headerHeight = this.header.offsetHeight;
+
+                    // Show header when scrolling up or at the top
+                    if (currentScrollY <= headerHeight || scrollDelta < 0) {
+                        this.header.classList.remove('header-hidden');
+                    } 
+                    // Hide header when scrolling down and past header height
+                    else if (scrollDelta > 0 && currentScrollY > headerHeight) {
+                        this.header.classList.add('header-hidden');
+                    }
+
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+
+                ticking = true;
+            }
         });
     }
 
@@ -219,7 +169,7 @@ export class Navigation {
 
                 // Handle blog navigation
                 if (href === 'blog.html') {
-                    await this.navigateToSection('blog');
+                    await this.navigateToPage('blog.html');
                     return;
                 }
 
@@ -254,6 +204,31 @@ export class Navigation {
         this.mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
         this.isMenuOpen = false;
+    }
+
+    init() {
+        // Initialize event listeners
+        this.initScrollHandler();
+        this.initMobileMenu();
+        this.initNavLinks();
+        this.initLogoLink();
+        this.initSectionLinks();
+
+        // Handle initial navigation if coming from another page
+        if (window.location.hash) {
+            const targetSection = document.querySelector(window.location.hash);
+            if (targetSection) {
+                // Add a small delay to ensure the page is fully loaded
+                setTimeout(() => {
+                    const headerHeight = this.header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
     }
 }
 

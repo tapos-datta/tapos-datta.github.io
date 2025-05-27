@@ -25,17 +25,8 @@ export class Blog {
             this.blogGrid.innerHTML = '';
             
             if (posts && posts.length > 0) {
-                // Create a document fragment for better performance
-                const fragment = document.createDocumentFragment();
-                
                 // Render posts
-                posts.forEach(post => {
-                    const card = blogService.createBlogCard(post);
-                    fragment.appendChild(card);
-                });
-
-                // Append all cards at once
-                this.blogGrid.appendChild(fragment);
+                await this.renderPosts(posts);
 
                 // Show/hide load more button
                 this.loadMoreBtn.style.display = blogService.hasMorePosts() ? 'block' : 'none';
@@ -96,11 +87,7 @@ export class Blog {
             const newPosts = blogService.loadMorePosts();
             
             if (newPosts && newPosts.length > 0) {
-                newPosts.forEach(post => {
-                    const card = blogService.createBlogCard(post);
-                    this.blogGrid.appendChild(card);
-                });
-
+                await this.renderPosts(newPosts);
                 this.loadMoreBtn.style.display = blogService.hasMorePosts() ? 'block' : 'none';
             }
         } catch (error) {
@@ -114,23 +101,25 @@ export class Blog {
     }
 
     async renderPosts(posts) {
-        // Clear container
-        this.blogGrid.innerHTML = '';
-        
-        // Add blog-container class for animation
-        this.blogGrid.classList.add('blog-container');
-        
         // Create a document fragment for better performance
         const fragment = document.createDocumentFragment();
         
         // Add each post with animation
-        posts.forEach(post => {
+        for (const post of posts) {
             const card = blogService.createBlogCard(post);
             fragment.appendChild(card);
-        });
+        }
         
         // Add all posts at once
         this.blogGrid.appendChild(fragment);
+
+        // Trigger animation for each card
+        const cards = this.blogGrid.querySelectorAll('.blog-card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('loaded');
+            }, (index + 1) * 100);
+        });
     }
 }
 
