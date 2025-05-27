@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  root: '.',
-  base: '/',  // For GitHub Pages user site
+  base: '/',
+
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',  // Put all assets in an 'assets' directory
+    assetsDir: 'assets',
+
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -17,34 +17,35 @@ export default defineConfig({
         entryFileNames: 'assets/js/[name]-[hash].js',
         chunkFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.css')) {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
             return 'assets/css/[name]-[hash][extname]';
           }
           return 'assets/[name]-[hash][extname]';
         }
       }
     },
-    cssCodeSplit: true,  // Enable CSS code splitting
-    cssMinify: true,     // Minify CSS
-    modulePreload: {
-      polyfill: true     // Enable module preload polyfill
-    }
+
+    cssCodeSplit: true, // Split CSS per page
+    // `minify` is enabled by default in production
   },
+
   server: {
     port: 3000,
     host: true,
     open: true
   },
+
+  resolve: {
+    alias: {
+      crypto: 'crypto-js' // Polyfill for Vite/ESM
+    }
+  },
+
   optimizeDeps: {
     esbuildOptions: {
       define: {
         global: 'globalThis'
       }
     }
-  },
-  resolve: {
-    alias: {
-      crypto: 'crypto-js'
-    }
   }
-}); 
+});
