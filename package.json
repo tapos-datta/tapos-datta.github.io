@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tapos-datta/taposdatta.github.io.git"
+    "url": "https://github.com/tapos-datta/tapos-datta.github.io.git"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/tapos-datta/taposdatta.github.io/issues"
   },
-  "homepage": "https://github.com/tapos-datta/taposdatta.github.io#readme",
+  "homepage": "https://tapos-datta.github.io/",
   "devDependencies": {
     "vite": "^4.5.2"
   }
