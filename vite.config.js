@@ -2,26 +2,32 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   root: '.',
-  base: '/',
+  base: '/',  // For GitHub Pages user site
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',  // Put all assets in an 'assets' directory
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
         blog: resolve(__dirname, 'blog.html')
       },
       output: {
-        entryFileNames: 'js/[name]-[hash].js',
-        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
           if (assetInfo.name.endsWith('.css')) {
-            return 'css/[name]-[hash][extname]';
+            return 'assets/css/[name]-[hash][extname]';
           }
           return 'assets/[name]-[hash][extname]';
         }
       }
+    },
+    cssCodeSplit: true,  // Enable CSS code splitting
+    cssMinify: true,     // Minify CSS
+    modulePreload: {
+      polyfill: true     // Enable module preload polyfill
     }
   },
   server: {
@@ -41,4 +47,4 @@ export default defineConfig(({ command }) => ({
       crypto: 'crypto-js'
     }
   }
-})); 
+}); 

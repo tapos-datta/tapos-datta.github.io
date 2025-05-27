@@ -1,4 +1,4 @@
-// Import all component styles
+// Import styles using Vite's CSS handling
 import '../css/style.css';
 import '../css/blog.css';
 
