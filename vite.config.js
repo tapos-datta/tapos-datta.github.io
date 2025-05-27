@@ -73,7 +73,7 @@ function copyAssets() {
 // https://vitejs.dev/config/
 export default defineConfig({
   root: '.',
-  base: '/',  // For GitHub Pages user site
+  base: '/tapos-datta.github.io/',  // For GitHub Pages user site
   build: {
     outDir: 'dist',
     assetsDir: 'assets',  // Put all assets in an 'assets' directory
