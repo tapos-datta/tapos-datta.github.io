@@ -2,18 +2,18 @@
 export class ComponentLoader {
     constructor() {
         this.components = {
-            'loader-container': 'components/loader.html',
-            'social-sidebar-container': 'components/social-sidebar.html',
-            'header-container': 'components/header.html',
-            'hero-container': 'components/hero.html',
-            'about-container': 'components/about.html',
-            'technologies-container': 'components/technologies.html',
-            'experience-container': 'components/experience.html',
-            'education-container': 'components/education.html',
-            'projects-container': 'components/projects.html',
-            'publications-container': 'components/publications.html',
-            'contact-container': 'components/contact.html',
-            'footer-container': 'components/footer.html'
+            'loader-container': '/components/loader.html',
+            'social-sidebar-container': '/components/social-sidebar.html',
+            'header-container': '/components/header.html',
+            'hero-container': '/components/hero.html',
+            'about-container': '/components/about.html',
+            'technologies-container': '/components/technologies.html',
+            'experience-container': '/components/experience.html',
+            'education-container': '/components/education.html',
+            'projects-container': '/components/projects.html',
+            'publications-container': '/components/publications.html',
+            'contact-container': '/components/contact.html',
+            'footer-container': '/components/footer.html'
         };
     }
 
