@@ -9,7 +9,6 @@ A modern, responsive portfolio website built with HTML, CSS, and JavaScript, usi
 - **Component-Based**: Modular HTML components for easy maintenance
 - **Fast Performance**: Optimized assets and lazy loading for better performance
 - **SEO Friendly**: Proper meta tags and semantic HTML
-- **Dark/Light Mode**: Toggle between dark and light themes
 - **Blog Section**: Dedicated blog page for articles and updates
 
 ## 🛠️ Tech Stack
@@ -112,9 +111,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- Website: [taposdatta.github.io](https://taposdatta.github.io)
-- GitHub: [@taposdatta](https://github.com/taposdatta)
-- LinkedIn: [Tapos Datta](https://linkedin.com/in/taposdatta)
+- Website: [tapos-datta.github.io](https://tapos-datta.github.io)
+- GitHub: [@tapos-datta](https://github.com/tapos-datta)
+- LinkedIn: [Tapos Datta](https://linkedin.com/in/tapos-datta)
 
 ---
 
