@@ -1,15 +1,19 @@
-# Tapos Datta's Portfolio Website
+# Portfolio Website
 
-A modern, responsive portfolio website built with HTML, CSS, and JavaScript, using Vite as the build tool. This website showcases my professional experience, projects, publications, and contact information.
+A modern personal portfolio site built with Vite.js and vanilla HTML/CSS/JS.
+It showcases my projects, skills, and background in a clean and responsive layout.
+## 🌐 Live Site: [tapos-datta.github.io](https://tapos-datta.github.io).
 
 ## 🚀 Features
 
-- **Modern Design**: Clean and professional design with smooth animations
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Component-Based**: Modular HTML components for easy maintenance
-- **Fast Performance**: Optimized assets and lazy loading for better performance
-- **SEO Friendly**: Proper meta tags and semantic HTML
-- **Blog Section**: Dedicated blog page for articles and updates
+- **Modern Design**: Clean and professional design with smooth animations and transitions
+- **Responsive Layout**: Fully responsive design that works seamlessly across all devices and screen sizes
+- **Component-Based Architecture**: Modular HTML components for easy maintenance and updates
+- **Fast Performance**: Optimized assets, lazy loading, and efficient code for better performance
+- **SEO Friendly**: Proper meta tags, semantic HTML, and optimized content for better search engine visibility
+- **Blog Section**: A dedicated blog page where I share insights, tutorials, and updates about my work
+- **Interactive Elements**: Engaging user interface with smooth animations and interactive components
+- **Contact Form**: Easy-to-use contact form for professional inquiries and collaborations
 
 ## 🛠️ Tech Stack
 
@@ -111,10 +115,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- Website: [tapos-datta.github.io](https://tapos-datta.github.io)
-- GitHub: [@tapos-datta](https://github.com/tapos-datta)
-- LinkedIn: [Tapos Datta](https://linkedin.com/in/tapos-datta)
+- 🌐 Live Website: [tapos-datta.github.io](https://tapos-datta.github.io)
+- 💻 GitHub: [@tapos-datta](https://github.com/tapos-datta)
+- 🔗 LinkedIn: [Tapos Datta](https://linkedin.com/in/tapos-datta)
+- 📧 Email: [tapos.datta@gmail.com](mailto:tapos.datta@gmail.com)
 
 ---
 
-Made with ❤️ by Tapos Datta
+Made with ❤️ by Tapos Datta | [View Live Site](https://tapos-datta.github.io)
