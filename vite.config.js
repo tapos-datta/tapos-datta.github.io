@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-export default defineConfig({
+// https://vitejs.dev/config/
+export default defineConfig(({ command }) => ({
   root: '.',
-  base: '/tapos-datta.github.io/',
+  base: '/',
   build: {
     outDir: 'dist',
     rollupOptions: {
@@ -25,6 +26,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host: true,
     open: true
   },
   optimizeDeps: {
@@ -39,4 +41,4 @@ export default defineConfig({
       crypto: 'crypto-js'
     }
   }
-}); 
+})); 

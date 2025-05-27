@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/tapos-datta/tapos-datta.github.io/issues"
   },
-  "homepage": "https://tapos-datta.github.io/tapos-datta.github.io/",
+  "homepage": "/",
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "vite": "^6.3.5"
