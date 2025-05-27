@@ -1,14 +1,86 @@
-# macOS system files
-.DS_Store
+# Dependencies
+node_modules/
+yarn.lock
+pnpm-lock.yaml
 
-# Thumbnails
-Thumbs.db
+# Build output
+dist/
+build/
+*.local
 
-# IDE/editor settings (optional)
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# IDE/Editor specific
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+*.sublime-workspace
+*.sublime-project
 
-# Optional backup files
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+.nyc_output/
+
+# Cache directories
+.cache/
+.npm/
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# Optional: Uncomment if you use these tools
+# .vercel
+# .netlify
+# .firebase/
+# .serverless/
+# .next/
+# .nuxt/
+# .output/
+
+# Temporary files
 *.tmp
+*.temp
 *.bak
+*.swp
+*~
+
+# Optional: Backup files
+*.backup
+*.orig
+*.rej
+*.patch
+
+# Optional: Local development
+*.local
+.local/

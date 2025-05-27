@@ -1,0 +1,144 @@
+/* Education Section Styles */
+#education {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 80px;
+}
+
+#education .section-heading {
+    margin-bottom: 30px;
+}
+
+.education-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.education-card {
+    background-color: var(--light-navy);
+    border-radius: 4px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+}
+
+.education-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.education-card:hover::before {
+    transform: scaleX(1);
+}
+
+.education-card h3 {
+    color: var(--lightest-slate);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.education-card h4 {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.education-card .date {
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.education-card p {
+    color: var(--light-slate);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.education-card .degree {
+    color: var(--lightest-slate);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.education-card .gpa {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.education-card .courses {
+    margin-top: 15px;
+}
+
+.education-card .courses h5 {
+    color: var(--lightest-slate);
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.education-card .courses ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.education-card .courses li {
+    color: var(--light-slate);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.education-card .courses li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .education-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .education-card {
+        padding: 25px;
+    }
+    
+    .education-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-card {
+        padding: 20px;
+    }
+    
+    .education-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .education-card .courses li {
+        font-size: 0.85rem;
+    }
+}
