@@ -1375,19 +1375,76 @@ footer {
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1000;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--green);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: left center;
+}
+
+/* Mobile Menu Button Active State */
+.mobile-menu-btn.active .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(0px, -2px);
+}
+
+.mobile-menu-btn.active .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(0px, 2px);
 }
 
 @media (max-width: 768px) {
     .mobile-menu-btn {
         display: block;
+        margin-left: auto;
+    }
+
+    nav {
+        padding: 0 25px;
+        justify-content: space-between;
+    }
+
+    .nav-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        padding-left: 0;
     }
 
     .nav-links {
         display: none;
     }
 
-    nav {
-        padding: 0 25px;
+    .nav-links-right {
+        display: none;
     }
 }
 
@@ -1405,6 +1462,7 @@ footer {
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+    padding: 100px 25px 25px;
 }
 
 .mobile-menu.active {
@@ -1583,32 +1641,31 @@ footer {
 
 .education-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
 }
 
 .education-main {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 30px;
 }
 
 .education-header {
-    margin-bottom: 0.5rem;
+    margin-bottom: 20px;
 }
 
 .education-header h3 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
     color: var(--lightest-slate);
 }
 
 .education-header .institution {
     color: var(--green);
     font-family: var(--font-mono);
-    font-size: 1rem;
-    margin: 0 0 0.15rem 0;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
 }
 
 .education-header .date {
@@ -1618,80 +1675,57 @@ footer {
 }
 
 .university-cards {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    padding: 0.25rem 0;
-    margin-top: 0.5rem;
-}
-
-.university-cards::-webkit-scrollbar {
-    height: 6px;
-}
-
-.university-cards::-webkit-scrollbar-track {
-    background: var(--light-navy);
-    border-radius: 3px;
-}
-
-.university-cards::-webkit-scrollbar-thumb {
-    background-color: var(--green);
-    border-radius: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
 }
 
 .university-card {
-    min-width: 280px;
     background-color: var(--light-navy);
-    border-radius: 6px;
-    padding: 0.75rem;
-    flex: 1;
+    border-radius: 4px;
+    padding: 25px;
     transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .university-card:hover {
     transform: translateY(-5px);
-    border-color: var(--green);
-    box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
 }
 
 .card-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--lightest-navy);
+    gap: 12px;
+    margin-bottom: 15px;
 }
 
 .card-header i {
     color: var(--green);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .card-header h4 {
     color: var(--lightest-slate);
-    font-size: 1rem;
-    font-family: var(--font-mono);
+    font-size: 1.1rem;
     margin: 0;
 }
 
 .university-card ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .university-card li {
     color: var(--light-slate);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 20px;
     position: relative;
-    line-height: 1.4;
-}
-
-.university-card li:last-child {
-    margin-bottom: 0;
 }
 
 .university-card li::before {
@@ -1699,6 +1733,117 @@ footer {
     position: absolute;
     left: 0;
     color: var(--green);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .university-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .education-grid {
+        gap: 20px;
+    }
+
+    .education-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .university-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .university-card {
+        padding: 20px;
+    }
+
+    .card-header h4 {
+        font-size: 1rem;
+    }
+
+    .university-card li {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .education-header .institution,
+    .education-header .date {
+        font-size: 0.85rem;
+    }
+
+    .university-cards {
+        gap: 12px;
+    }
+
+    .university-card {
+        padding: 15px;
+    }
+
+    .card-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .card-header i {
+        font-size: 1rem;
+    }
+
+    .card-header h4 {
+        font-size: 0.95rem;
+    }
+
+    .university-card li {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .university-card {
+        padding: 12px;
+    }
+
+    .card-header {
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .card-header i {
+        font-size: 0.9rem;
+    }
+
+    .card-header h4 {
+        font-size: 0.9rem;
+    }
+
+    .university-card li {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+        padding-left: 16px;
+    }
+
+    .university-card li::before {
+        left: 2px;
+    }
 }
 
 /* Coursework Section Styles */
