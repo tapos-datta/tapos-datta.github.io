@@ -1641,7 +1641,7 @@ footer {
 
 .education-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr;
     gap: 40px;
 }
 
@@ -1848,44 +1848,59 @@ footer {
 
 /* Coursework Section Styles */
 .coursework-section {
-    margin-top: 0.75rem;
+    margin-top: 30px;
+    background-color: var(--light-navy);
+    border-radius: 4px;
+    padding: 25px;
 }
 
 .coursework-heading {
-    margin-bottom: 0.75rem;
+    margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--lightest-slate);
     font-family: var(--font-mono);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coursework-heading i {
+    color: var(--green);
+    font-size: 1.1rem;
 }
 
 .coursework-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    gap: 20px;
 }
 
 .course-category {
-    background-color: var(--light-navy);
-    border-radius: 6px;
-    padding: 0.75rem;
+    background-color: rgba(100, 255, 218, 0.05);
+    border-radius: 4px;
+    padding: 15px;
     transition: transform 0.3s ease;
+}
+
+.course-category:hover {
+    transform: translateY(-3px);
 }
 
 .category-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
 .category-header i {
     color: var(--green);
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .category-header h5 {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--lightest-slate);
     font-family: var(--font-mono);
 }
@@ -1898,9 +1913,9 @@ footer {
 
 .course-category ul li {
     position: relative;
-    padding-left: 1rem;
-    margin-bottom: 0.35rem;
-    font-size: 0.9rem;
+    padding-left: 16px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
     color: var(--light-slate);
     line-height: 1.4;
 }
@@ -1916,38 +1931,81 @@ footer {
     color: var(--green);
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .education-grid {
+        gap: 30px;
+    }
+
+    .coursework-section {
+        margin-top: 25px;
+        padding: 20px;
+    }
+
+    .coursework-heading {
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+
     .coursework-grid {
         grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .university-cards {
-        gap: 0.5rem;
-    }
-
-    .university-card {
-        min-width: 260px;
-        padding: 0.75rem;
-    }
-
-    .card-header {
-        margin-bottom: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-
-    .university-card li {
-        font-size: 0.85rem;
-        margin-bottom: 0.35rem;
+        gap: 15px;
     }
 
     .course-category {
-        padding: 0.75rem;
+        padding: 12px;
+    }
+
+    .category-header {
+        margin-bottom: 10px;
     }
 
     .course-category ul li {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-grid {
+        gap: 20px;
+    }
+
+    .coursework-section {
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .coursework-heading {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+    }
+
+    .coursework-grid {
+        gap: 12px;
+    }
+
+    .course-category {
+        padding: 10px;
+    }
+
+    .category-header {
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .category-header i {
         font-size: 0.85rem;
-        margin-bottom: 0.35rem;
+    }
+
+    .category-header h5 {
+        font-size: 0.85rem;
+    }
+
+    .course-category ul li {
+        font-size: 0.75rem;
+        margin-bottom: 5px;
+        padding-left: 14px;
     }
 }
 
@@ -2690,6 +2748,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -2829,6 +2888,7 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -2838,8 +2898,52 @@ main {
     opacity: 1;
 }
 
-@media (max-width: 768px) {
+/* Blog Card Responsive Styles */
+/* Tablet and smaller devices */
+@media (max-width: 1024px) {
     .blog-card {
         max-width: 100%;
+    }
+
+    .blog-card-image {
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        position: relative;
+    }
+
+    .blog-card-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .blog-card-content {
+        padding: 1.25rem;
+    }
+}
+
+/* Large tablets and smaller devices */
+@media (max-width: 768px) {
+    .blog-card-image {
+        min-height: 0;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    .blog-card-content {
+        padding: 1rem;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+    .blog-card-content {
+        padding: 0.875rem;
     }
 } 
