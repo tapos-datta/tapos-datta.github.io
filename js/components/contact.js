@@ -66,7 +66,37 @@ export class ContactForm {
     }
 }
 
+// Resume Tabs Functionality
+export function initResumeTabs() {
+    const resumeTabs = document.querySelectorAll('.resume-tab');
+    const resumeLink = document.getElementById('resume-link');
+    
+    if (!resumeTabs.length || !resumeLink) return;
+    
+    // Resume file paths
+    const resumePaths = {
+        professional: 'assets/documents/Tapos_Datta.pdf',
+        academic: 'assets/documents/Tapos_Datta_Academic.pdf'
+    };
+    
+    resumeTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const resumeType = tab.getAttribute('data-resume');
+            
+            // Update active state
+            resumeTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Update resume link
+            if (resumePaths[resumeType]) {
+                resumeLink.href = resumePaths[resumeType];
+            }
+        });
+    });
+}
+
 // Export initialization function
 export function initContactForm() {
     new ContactForm();
+    initResumeTabs();
 }

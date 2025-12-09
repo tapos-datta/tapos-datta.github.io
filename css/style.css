@@ -809,6 +809,62 @@ nav {
     transform: translateY(-3px);
 }
 
+/* Resume Tabs */
+.resume-tabs-container {
+    margin-top: 1.5rem;
+}
+
+.resume-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: var(--navy);
+    border-radius: 6px;
+    padding: 0.25rem;
+}
+
+.resume-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: transparent;
+    color: var(--slate);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.resume-tab:hover {
+    color: var(--lightest-slate);
+    background-color: rgba(100, 255, 218, 0.05);
+}
+
+.resume-tab.active {
+    background-color: var(--light-navy);
+    color: var(--green);
+}
+
+.resume-tab i {
+    font-size: 1rem;
+}
+
+.resume-content {
+    display: flex;
+    justify-content: center;
+}
+
+.resume-link {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
 .quick-links-card {
     background-color: var(--light-navy);
     border-radius: 8px;
@@ -896,6 +952,15 @@ nav {
     .cta-button {
         padding: 0.875rem 1.75rem;
         font-size: 0.95rem;
+    }
+    
+    .resume-tab {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .resume-tab i {
+        font-size: 0.9rem;
     }
     
     .social-grid,
