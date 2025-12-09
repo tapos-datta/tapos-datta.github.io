@@ -1,10 +1,9 @@
-name: Deploy Vite site to GitHub Pages
+name: Deploy Vite Project to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the 'main' branch
   push:
     branches: ["main"]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -14,43 +13,43 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
-      
-      - name: Setup Node
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: 'npm'
-      
+          cache: 'npm' # Caches npm modules for faster installs
+
       - name: Install dependencies
-        run: npm ci
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Setup Pages
+        run: npm ci # Use npm ci for clean installs in automated environments
+
+      - name: Build Vite Project
+        # This runs 'npm run build', which executes 'vite build'
+        run: npm run build 
+
+      - name: Setup GitHub Pages Environment
         uses: actions/configure-pages@v4
         with:
-          # Automatically inject base tag in the index.html
+          # Automatically configures the base path in index.html for GH Pages
           static_site_generator: vite
-      
-      - name: Upload artifact
+          
+      - name: Upload Build Artifact (the 'dist' folder)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          # 'path' must point to the folder created by 'vite build'
+          path: './dist' 
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
@@ -60,4 +59,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
