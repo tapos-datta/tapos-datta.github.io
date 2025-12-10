@@ -23,29 +23,17 @@
         <section class="blog-section">
             <div class="container">
                 <h2 class="section-heading">Latest Blog Posts</h2>
+                <!-- Blog Loading Indicator -->
+                <div class="blog-loading-indicator" id="blogLoadingIndicator">
+                    <div class="blog-loading-spinner">
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                    </div>
+                    <p class="blog-loading-text">Loading blog posts...</p>
+                </div>
                 <div class="blog-grid" id="blogGrid">
                     <!-- Blog posts will be dynamically inserted here -->
-                    <div class="blog-card">
-                        <div class="blog-card-content">
-                            <div class="blog-card-image">
-                                <img src="assets/images/placeholder_blog.webp" alt="Blog post thumbnail" loading="lazy">
-                            </div>
-                            <div class="blog-card-text">
-                                <div class="blog-meta">
-                                    <span class="blog-date">
-                                        <i class="fas fa-calendar"></i>
-                                        <span class="date">Loading...</span>
-                                    </span>
-                                    <span class="blog-category">Loading...</span>
-                                </div>
-                                <h3>Loading...</h3>
-                                <p class="blog-excerpt">Loading blog post content...</p>
-                                <a href="#" class="read-more" target="_blank" rel="noopener noreferrer">
-                                    Read More <i class="fas fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <button class="load-more-button" id="loadMoreBtn" style="display: none;">
                     Load More Posts

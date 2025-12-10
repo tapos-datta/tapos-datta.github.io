@@ -6,6 +6,7 @@ export class Blog {
         this.blogGrid = document.getElementById('blogGrid');
         this.loadMoreBtn = document.getElementById('loadMoreBtn');
         this.errorMessage = document.getElementById('errorMessage');
+        this.loadingIndicator = document.getElementById('blogLoadingIndicator');
         this.isLoading = false;
         this.initialLoad = true;
     }
@@ -13,15 +14,18 @@ export class Blog {
     async init() {
         try {
             if (this.initialLoad) {
-                // Show loading state only on initial load
-                this.showLoadingState();
+                // Show loading indicator before fetching data
+                this.showLoadingIndicator();
                 this.initialLoad = false;
             }
             
             // Fetch initial posts
             const posts = await blogService.fetchPosts();
             
-            // Clear loading state
+            // Hide loading indicator
+            this.hideLoadingIndicator();
+            
+            // Clear grid
             this.blogGrid.innerHTML = '';
             
             if (posts && posts.length > 0) {
@@ -38,21 +42,21 @@ export class Blog {
             }
         } catch (error) {
             console.error('Error initializing blog:', error);
+            this.hideLoadingIndicator();
             this.showError('Failed to load blog posts. Please try again later.');
         }
     }
 
-    showLoadingState() {
-        const loadingCard = document.createElement('div');
-        loadingCard.className = 'blog-card blog-loading';
-        loadingCard.innerHTML = `
-            <div class="blog-card-content">
-                <div class="loading-spinner"></div>
-                <p>Loading posts...</p>
-            </div>
-        `;
-        this.blogGrid.innerHTML = '';
-        this.blogGrid.appendChild(loadingCard);
+    showLoadingIndicator() {
+        if (this.loadingIndicator) {
+            this.loadingIndicator.style.display = 'flex';
+        }
+    }
+
+    hideLoadingIndicator() {
+        if (this.loadingIndicator) {
+            this.loadingIndicator.style.display = 'none';
+        }
     }
 
     showNoPostsMessage() {
